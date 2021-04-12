@@ -27,7 +27,7 @@ namespace Blizzard.WoWClassic.ApiContract.Realms
         public string Timezone { get; set; }
 
         [JsonPropertyName("type")]
-        public GenericKeyValue Type { get; set; }
+        public GenericTypeName Type { get; set; }
 
         [JsonPropertyName("is_tournament")]
         public bool IsTournament { get; set; }

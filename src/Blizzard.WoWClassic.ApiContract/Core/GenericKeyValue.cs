@@ -4,10 +4,10 @@ namespace Blizzard.WoWClassic.ApiContract.Core
 {
     public class GenericKeyValue
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
 
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("value")]
+        public string Value { get; set; }
     }
 }
