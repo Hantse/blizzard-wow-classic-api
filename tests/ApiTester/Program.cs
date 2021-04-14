@@ -3,11 +3,14 @@ using Blizzard.WoWClassic.ApiClient;
 using Blizzard.WoWClassic.ApiClient.Exceptions;
 using Blizzard.WoWClassic.ApiClient.Helpers;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ApiTester
 {
@@ -15,20 +18,23 @@ namespace ApiTester
     {
         static string connectionString = "DefaultEndpointsProtocol=https;AccountName=appepicstorage;AccountKey=Cyr196oHhMjTTnCgCV1A/LXADKlxzwI+v5+NTxp2wzq9bkgFUDK5wB0337gC7CrRfz712vHJD9UVnwe3tXbQaA==;EndpointSuffix=core.windows.net";
 
+        static string[] statsList = new string[] { "Stamina", "Strenght", "Agility", "DamageMin1", "DamageMax1", "Durability", "Speed" };
+
         static async Task Main(string[] args)
         {
-            var clientWow = new WoWClassicApiClient("", "");
+            var clientWow = new WoWClassicApiClient("bxSvhNNHJwI0kgNvKy6Z91oMEOpwgjmv", "2b136112d3064b11b19c5ea275846996");
             clientWow.SetDefaultValues(RegionHelper.Europe, NamespaceHelper.Dynamic, LocaleHelper.French);
 
-            for (var i = 5000; i < 100000; i++)
+            for (var i = 1; i < 50000; i++)
             {
                 try
                 {
                     await ExtractBlizzardDatabase(clientWow, i);
                     await Task.Delay(250);
                 }
-                catch (Exception e) { 
-                
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error ... {e.Message}");
                 }
             }
         }
@@ -38,10 +44,13 @@ namespace ApiTester
             try
             {
                 var itemDetails = await clientWow.GetItemDetailsAsync(itemId, RegionHelper.Us, NamespaceHelper.Static);
+                var child = JsonSerializer.Deserialize<ItemAdvancedMapped>(JsonSerializer.Serialize(itemDetails));
+                var itemXml = await GetXmlAsync(itemId);
+                child.Stats = ExtractEquiped(itemXml);
 
                 if (itemDetails != null)
                 {
-                    await UploadToAzureItem($"{itemId}.json", Encoding.UTF8.GetBytes(JsonSerializer.Serialize(itemDetails)));
+                    await UploadToAzureItem($"{itemId}.json", Encoding.UTF8.GetBytes(JsonSerializer.Serialize(child)));
                 }
 
                 var itemMedia = await clientWow.GetItemMediaAsync(itemId, RegionHelper.Us, NamespaceHelper.Static);
@@ -55,6 +64,62 @@ namespace ApiTester
             catch (ApiException)
             {
                 Console.WriteLine($"Item id not found {itemId}.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error ... {e.Message}");
+            }
+        }
+
+        static string MapStat(string key)
+        {
+            switch (key)
+            {
+                case "sta":
+                    return "Stamina";
+                case "str":
+                    return "Strenght";
+                case "agi":
+                    return "Agility";
+                case "dmgmin1":
+                    return "DamageMin1";
+                case "dmgmax1":
+                    return "DamageMax1";
+                case "dura":
+                    return "Durability";
+                case "mlespeed":
+                    return "Speed";
+                default:
+                    return key;
+            }
+        }
+
+        static Dictionary<string, string> ExtractEquiped(string itemXml)
+        {
+            var dictionaryEquip = new Dictionary<string, string>();
+            XDocument doc = XDocument.Parse(itemXml);
+            var query = from c in doc.Root.Descendants("item").Descendants("jsonEquip")
+                        select c;
+
+            var node = query.FirstOrDefault();
+
+            if (node != null)
+            {
+                var cleanValue = node.Value.Replace("\"", "");
+                dictionaryEquip = cleanValue.Split(',').
+                    ToDictionary(k => MapStat(k.Split(':')[0]), v => v.Split(':')[1])
+                    .Where(s => statsList.Contains(s.Key))
+                    .ToDictionary(s => s.Key, s => s.Value);
+            }
+
+            return dictionaryEquip;
+        }
+
+        static async Task<string> GetXmlAsync(int itemId)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                return await httpClient.GetStringAsync($"https://classic.wowhead.com/item={itemId}&xml");
             }
         }
 
