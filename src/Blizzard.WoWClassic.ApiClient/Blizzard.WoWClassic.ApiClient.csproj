@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>WoWClassic.ApiClient</PackageId>
+    <Authors>Hantse</Authors>
+    <Company>WGM</Company>
+    <Product>WoWClassic.ApiClient</Product>
   </PropertyGroup>
 
   <ItemGroup>
