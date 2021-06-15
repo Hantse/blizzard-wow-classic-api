@@ -2,12 +2,12 @@
 
 namespace Blizzard.WoWClassic.ApiContract.Core
 {
-    public class GenericTypeName
+    public class GenericTypeName<T>
     {
         [JsonPropertyName("type")]
         public string Type { get; set; }
 
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public T Name { get; set; }
     }
 }

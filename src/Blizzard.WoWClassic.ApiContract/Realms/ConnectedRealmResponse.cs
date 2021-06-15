@@ -12,10 +12,10 @@ namespace Blizzard.WoWClassic.ApiContract.Realms
         public bool HasQueue { get; set; }
 
         [JsonPropertyName("status")]
-        public GenericTypeName Status { get; set; }
+        public GenericTypeName<string> Status { get; set; }
 
         [JsonPropertyName("population")]
-        public GenericTypeName Population { get; set; }
+        public GenericTypeName<string> Population { get; set; }
 
         [JsonPropertyName("realms")]
         public RealmDetails[] RealmDetails { get; set; }

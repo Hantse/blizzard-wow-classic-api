@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Blizzard.WoWClassic.ApiContract.Items
 {
-    public class ItemDetails : ItemBase<ValueLocale>
+    public class ItemLocaleDetails : ItemBase<string>
     {
 
     }
