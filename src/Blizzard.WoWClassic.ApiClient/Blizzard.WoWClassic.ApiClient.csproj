@@ -9,8 +9,4 @@
     <Product>WoWClassic.ApiClient</Product>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Blizzard.WoWClassic.ApiContract\Blizzard.WoWClassic.ApiContract.csproj" />
-  </ItemGroup>
-
 </Project>

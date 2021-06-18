@@ -7,11 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BB03DA87-DD9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C807FB67-A779-4FD7-9449-74340B2E2BAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blizzard.WoWClassic.ApiClient", "src\Blizzard.WoWClassic.ApiClient\Blizzard.WoWClassic.ApiClient.csproj", "{99F7C5BB-84F8-4B83-B5F0-7648593BAD0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blizzard.WoWClassic.ApiClient", "src\Blizzard.WoWClassic.ApiClient\Blizzard.WoWClassic.ApiClient.csproj", "{99F7C5BB-84F8-4B83-B5F0-7648593BAD0D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blizzard.WoWClassic.ApiContract", "src\Blizzard.WoWClassic.ApiContract\Blizzard.WoWClassic.ApiContract.csproj", "{31BC3247-2D47-41B7-97F5-93895F3F8046}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTester", "tests\ApiTester\ApiTester.csproj", "{1C1FBB54-F186-4B26-ADE4-715065B2BD3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiTester", "tests\ApiTester\ApiTester.csproj", "{1C1FBB54-F186-4B26-ADE4-715065B2BD3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,18 +33,6 @@ Global
 		{99F7C5BB-84F8-4B83-B5F0-7648593BAD0D}.Release|x64.Build.0 = Release|Any CPU
 		{99F7C5BB-84F8-4B83-B5F0-7648593BAD0D}.Release|x86.ActiveCfg = Release|Any CPU
 		{99F7C5BB-84F8-4B83-B5F0-7648593BAD0D}.Release|x86.Build.0 = Release|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Debug|x64.Build.0 = Debug|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Debug|x86.Build.0 = Debug|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Release|x64.ActiveCfg = Release|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Release|x64.Build.0 = Release|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Release|x86.ActiveCfg = Release|Any CPU
-		{31BC3247-2D47-41B7-97F5-93895F3F8046}.Release|x86.Build.0 = Release|Any CPU
 		{1C1FBB54-F186-4B26-ADE4-715065B2BD3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C1FBB54-F186-4B26-ADE4-715065B2BD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C1FBB54-F186-4B26-ADE4-715065B2BD3B}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -65,7 +51,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{99F7C5BB-84F8-4B83-B5F0-7648593BAD0D} = {BB03DA87-DD92-4A45-8CD6-8AB39B6DF1A7}
-		{31BC3247-2D47-41B7-97F5-93895F3F8046} = {BB03DA87-DD92-4A45-8CD6-8AB39B6DF1A7}
 		{1C1FBB54-F186-4B26-ADE4-715065B2BD3B} = {C807FB67-A779-4FD7-9449-74340B2E2BAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
