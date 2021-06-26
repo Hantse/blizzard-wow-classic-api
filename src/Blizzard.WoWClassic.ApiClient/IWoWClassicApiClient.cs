@@ -1,4 +1,5 @@
-﻿using Blizzard.WoWClassic.ApiClient.Helpers;
+﻿using Blizzard.WoWClassic.ApiClient.Contracts;
+using Blizzard.WoWClassic.ApiClient.Helpers;
 using Blizzard.WoWClassic.ApiContract.Items;
 using Blizzard.WoWClassic.ApiContract.Medias;
 using Blizzard.WoWClassic.ApiContract.Realms;
@@ -8,6 +9,13 @@ namespace Blizzard.WoWClassic.ApiClient
 {
     public interface IWoWClassicApiClient
     {
+        #region Auction House
+        Task<AuctionHouse> GetRealmAuctionHousesAsync(int realmId, string locale);
+        Task<AuctionHouse> GetRealmAuctionHousesAsync(int realmId, string region = RegionHelper.Us, string @namespace = NamespaceHelper.Static, string locale = LocaleHelper.EnglishUs);
+        Task<AuctionHouseAuction> GetRealmAuctionsAsync(int realmId, int auctionHouseId, string locale = LocaleHelper.EnglishUs);
+        Task<AuctionHouseAuction> GetRealmAuctionsAsync(int realmId, int auctionHouseId, string region = RegionHelper.Us, string @namespace = NamespaceHelper.Static, string locale = LocaleHelper.EnglishUs);
+        #endregion
+
         #region Realm
         Task<ConnectedRealmsResponse> GetConnectedRealmsAsync();
         Task<ConnectedRealmsResponse> GetConnectedRealmsAsync(string region = RegionHelper.Us, string @namespace = "dynamic-classic-us", string locale = "en_US");

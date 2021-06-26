@@ -25,18 +25,22 @@ namespace ApiTester
             var clientWow = new WoWClassicApiClient("bxSvhNNHJwI0kgNvKy6Z91oMEOpwgjmv", "2b136112d3064b11b19c5ea275846996");
             clientWow.SetDefaultValues(RegionHelper.Europe, NamespaceHelper.Dynamic, LocaleHelper.French);
 
-            for (var i = 1; i < 50000; i++)
-            {
-                try
-                {
-                    await ExtractBlizzardDatabase(clientWow, i);
-                    await Task.Delay(250);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"Error ... {e.Message}");
-                }
-            }
+            var realmAuctionHouses = await clientWow.GetRealmAuctionHousesAsync(4744, LocaleHelper.French);
+            var auctions = await clientWow.GetRealmAuctionsAsync(4744, 2, LocaleHelper.French);
+
+
+            //for (var i = 1; i < 50000; i++)
+            //{
+            //    try
+            //    {
+            //        await ExtractBlizzardDatabase(clientWow, i);
+            //        await Task.Delay(250);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine($"Error ... {e.Message}");
+            //    }
+            //}
         }
 
         static async Task ExtractBlizzardDatabase(WoWClassicApiClient clientWow, int itemId)
