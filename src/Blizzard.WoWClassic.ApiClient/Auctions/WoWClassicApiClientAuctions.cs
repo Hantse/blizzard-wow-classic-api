@@ -57,7 +57,7 @@ namespace Blizzard.WoWClassic.ApiClient
             // https://us.api.blizzard.com/data/wow/connected-realm/4372/auctions/2?namespace=dynamic-classic-us&locale=en_US&access_token=USmRU4mUWd6dZOHoYmNRwKszaTW7ZCpvp0
             using (var httpClient = await GetAuthenticateClientAsync(region))
             {
-                var httpResponse = await httpClient.GetAsync($"https://{region}.api.blizzard.com/data/wow/connected-realm/{realmId}/auctions/{auctionHouseId }?namespace={@namespace}{region}&locale={locale}");
+                var httpResponse = await httpClient.GetAsync($"https://{region}.api.blizzard.com/data/wow/connected-realm/{realmId}/auctions/{auctionHouseId}?namespace={@namespace}{region}&locale={locale}");
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     return JsonSerializer.Deserialize<AuctionHouseAuction>(await httpResponse.Content.ReadAsStringAsync());

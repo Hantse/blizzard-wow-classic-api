@@ -30,7 +30,7 @@ namespace Blizzard.WoWClassic.ApiClient
         public void SetDefaultValues(string region, string @namespace, string locale)
         {
             WoWClassicApiClient.defaultRegion = region;
-            WoWClassicApiClient.defaultNamespace =  $"{@namespace}";
+            WoWClassicApiClient.defaultNamespace =  $"{@namespace}{region}";
             WoWClassicApiClient.defaultLocale = locale;
         }
 
