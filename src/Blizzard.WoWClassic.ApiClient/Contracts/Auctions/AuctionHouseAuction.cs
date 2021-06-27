@@ -6,6 +6,6 @@ namespace Blizzard.WoWClassic.ApiClient.Contracts
     public class AuctionHouseAuction : CoreResponse
     {
         [JsonPropertyName("auctions")]
-        public object[] Auctions { get; set; }
+        public Auction[] Auctions { get; set; }
     }
 }
