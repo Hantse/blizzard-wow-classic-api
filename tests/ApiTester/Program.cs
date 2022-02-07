@@ -1,16 +1,6 @@
-﻿using Azure.Storage.Blobs;
-using Blizzard.WoWClassic.ApiClient;
-using Blizzard.WoWClassic.ApiClient.Exceptions;
+﻿using Blizzard.WoWClassic.ApiClient;
 using Blizzard.WoWClassic.ApiClient.Helpers;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace ApiTester
 {
@@ -23,7 +13,9 @@ namespace ApiTester
         static async Task Main(string[] args)
         {
             var clientWow = new WoWClassicApiClient("bxSvhNNHJwI0kgNvKy6Z91oMEOpwgjmv", "2b136112d3064b11b19c5ea275846996");
-            clientWow.SetDefaultValues(RegionHelper.Europe, NamespaceHelper.Dynamic, LocaleHelper.French);
+            clientWow.SetDefaultValues(RegionHelper.Europe, NamespaceHelper.Static, LocaleHelper.French);
+
+            var itemDetails = await clientWow.GetItemDetailsAsync(19019);
 
             var realms = await clientWow.GetConnectedRealmsAsync();
 
