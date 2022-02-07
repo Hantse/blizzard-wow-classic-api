@@ -4,6 +4,9 @@ namespace Blizzard.WoWClassic.ApiContract.Core
 {
     public class PreviewItemValue<T>
     {
+        [JsonPropertyName("binding")]
+        public GenericTypeName<T> Binding { get; set; }
+
         [JsonPropertyName("quality")]
         public GenericTypeName<T> Quality { get; set; }
 
