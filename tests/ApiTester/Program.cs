@@ -13,11 +13,11 @@ namespace ApiTester
         static async Task Main(string[] args)
         {
             var clientWow = new WoWClassicApiClient("bxSvhNNHJwI0kgNvKy6Z91oMEOpwgjmv", "2b136112d3064b11b19c5ea275846996");
-            clientWow.SetDefaultValues(RegionHelper.Europe, NamespaceHelper.Static, LocaleHelper.French);
+            clientWow.SetDefaultValues(RegionHelper.Us, NamespaceHelper.Static, LocaleHelper.French);
 
-            var itemDetails = await clientWow.GetItemDetailsAsync(19019);
+            var itemDetails = await clientWow.GetItemDetailsAsync(839);
 
-            var realms = await clientWow.GetConnectedRealmsAsync();
+            var realms = await clientWow.GetConnectedRealmsAsync(RegionHelper.Us, $"{NamespaceHelper.Dynamic}{RegionHelper.Us}", LocaleHelper.EnglishUs);
 
             var realmAuctionHouses = await clientWow.GetRealmAuctionHousesAsync(4744, RegionHelper.Europe, NamespaceHelper.Dynamic, LocaleHelper.EnglishUs);
             var auctions = await clientWow.GetRealmAuctionsAsync(4744, 2, RegionHelper.Europe, NamespaceHelper.Dynamic, LocaleHelper.EnglishUs);

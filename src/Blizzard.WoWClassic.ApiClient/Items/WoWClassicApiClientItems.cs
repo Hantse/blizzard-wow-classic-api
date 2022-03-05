@@ -54,7 +54,7 @@ namespace Blizzard.WoWClassic.ApiClient
             // https://us.api.blizzard.com/data/wow/item/19019?namespace=dynamic-classic-us
             using (var httpClient = await GetAuthenticateClientAsync(region))
             {
-                var httpResponse = await httpClient.GetAsync($"https://{region}.api.blizzard.com/data/wow/item/{itemId}?namespace={@namespace}");
+                var httpResponse = await httpClient.GetAsync($"https://{region}.api.blizzard.com/data/wow/item/{itemId}?namespace={@namespace}{region}");
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     return JsonSerializer.Deserialize<ItemDetails>(await httpResponse.Content.ReadAsStringAsync());
