@@ -1,6 +1,7 @@
 ﻿using Blizzard.WoWClassic.ApiClient;
 using Blizzard.WoWClassic.ApiClient.Helpers;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace ApiTester
 {
@@ -12,15 +13,18 @@ namespace ApiTester
 
         static async Task Main(string[] args)
         {
-            var clientWow = new WoWClassicApiClient("bxSvhNNHJwI0kgNvKy6Z91oMEOpwgjmv", "2b136112d3064b11b19c5ea275846996");
+            var clientWow = new WoWClassicApiClient("***", "***");
             clientWow.SetDefaultValues(RegionHelper.Us, NamespaceHelper.Static, LocaleHelper.French);
 
             var itemDetails = await clientWow.GetItemDetailsAsync(839);
 
             var realms = await clientWow.GetConnectedRealmsAsync(RegionHelper.Us, $"{NamespaceHelper.Dynamic}{RegionHelper.Us}", LocaleHelper.EnglishUs);
 
-            var realmAuctionHouses = await clientWow.GetRealmAuctionHousesAsync(4744, RegionHelper.Europe, NamespaceHelper.Dynamic, LocaleHelper.EnglishUs);
-            var auctions = await clientWow.GetRealmAuctionsAsync(4744, 2, RegionHelper.Europe, NamespaceHelper.Dynamic, LocaleHelper.EnglishUs);
+            var realmId = realms.GetAsIdList.FirstOrDefault();
+
+            var realmAuctionHouses = await clientWow.GetRealmAuctionHousesAsync(realmId, RegionHelper.Us, NamespaceHelper.Dynamic, LocaleHelper.EnglishUs);
+            
+            var auctions = await clientWow.GetRealmAuctionsAsync(realmId, 2, RegionHelper.Us, NamespaceHelper.Dynamic, LocaleHelper.EnglishUs);
 
 
             //for (var i = 1; i < 50000; i++)

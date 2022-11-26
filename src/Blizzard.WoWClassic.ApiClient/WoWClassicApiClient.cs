@@ -30,7 +30,7 @@ namespace Blizzard.WoWClassic.ApiClient
         public void SetDefaultValues(string region, string @namespace, string locale)
         {
             WoWClassicApiClient.defaultRegion = region;
-            WoWClassicApiClient.defaultNamespace =  $"{@namespace}{region}";
+            WoWClassicApiClient.defaultNamespace =  $"{@namespace}";
             WoWClassicApiClient.defaultLocale = locale;
         }
 
@@ -44,7 +44,7 @@ namespace Blizzard.WoWClassic.ApiClient
                     var formContent = new List<KeyValuePair<string, string>>();
                     formContent.Add(new KeyValuePair<string, string>("grant_type", "client_credentials"));
 
-                    var url = $"https://{region}.battle.net/oauth/token";
+                    var url = $"https://oauth.battle.net/oauth/token";
                     var httpRequest = new HttpRequestMessage(HttpMethod.Post, url) { Content = new FormUrlEncodedContent(formContent) };
                     var httpResponse = await httpClient.SendAsync(httpRequest);
 
