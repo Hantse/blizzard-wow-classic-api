@@ -21,12 +21,12 @@ namespace Blizzard.WoWClassic.ApiClient
         /// <param name="namespace">The namespace to use to locate this document.</param>
         /// <param name="locale">The locale to reflect in localized data.</param>
         /// <returns>Returns an index of connected realms.</returns>
-        public async Task<ConnectedRealmsResponse> GetConnectedRealmsAsync(string region = RegionHelper.Us, string @namespace = "dynamic-classic-us", string locale = "en_US")
+        public async Task<ConnectedRealmsResponse> GetConnectedRealmsAsync(string region = RegionHelper.Us, string @namespace = "dynamic-classic-", string locale = "en_US")
         {
             // https://us.api.blizzard.com/data/wow/connected-realm/index?namespace=dynamic-classic-us&locale=en_US
             using (var httpClient = await GetAuthenticateClientAsync(region))
             {
-                var httpResponse = await httpClient.GetAsync($"https://{region}.api.blizzard.com/data/wow/connected-realm/index?namespace={@namespace}&locale={locale}");
+                var httpResponse = await httpClient.GetAsync($"https://{region}.api.blizzard.com/data/wow/connected-realm/index?namespace={@namespace}{region}&locale={locale}");
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     return JsonSerializer.Deserialize<ConnectedRealmsResponse>(await httpResponse.Content.ReadAsStringAsync());
