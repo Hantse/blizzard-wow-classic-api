@@ -7,6 +7,9 @@ namespace Blizzard.WoWClassic.ApiContract.Core
         [JsonPropertyName("binding")]
         public GenericTypeName<T> Binding { get; set; }
 
+        [JsonPropertyName("unique_equipped")]
+        public T UniqueEquipped { get; set; }
+
         [JsonPropertyName("quality")]
         public GenericTypeName<T> Quality { get; set; }
 

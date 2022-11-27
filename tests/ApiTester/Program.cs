@@ -10,10 +10,10 @@ namespace ApiTester
     {
         static async Task Main(string[] args)
         {
-            var clientWow = new WoWClassicApiClient("***", "***");
+            var clientWow = new WoWClassicApiClient("bxSvhNNHJwI0kgNvKy6Z91oMEOpwgjmv", "2b136112d3064b11b19c5ea275846996");
             clientWow.SetDefaultValues(RegionHelper.Us, NamespaceHelper.Static, LocaleHelper.French);
 
-            var itemDetails = await clientWow.GetItemDetailsAsync(839);
+            var itemDetails = await clientWow.GetItemDetailsAsync(19019);
 
             var realms = await clientWow.GetConnectedRealmsAsync(RegionHelper.Us, NamespaceHelper.Dynamic, LocaleHelper.EnglishUs);
 

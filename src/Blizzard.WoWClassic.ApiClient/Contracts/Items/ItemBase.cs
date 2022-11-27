@@ -32,9 +32,6 @@ namespace Blizzard.WoWClassic.ApiContract.Items
         [JsonPropertyName("media")]
         public ItemMedia Media { get; set; }
 
-        [JsonPropertyName("unique_equipped")]
-        public string UniqueEquipped { get; set; }
-
         [JsonPropertyName("purchase_price")]
         public int PurchasePrice { get; set; }
 
